@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Politigotchi</title>
+  <meta name="description" content="Adote um político de estimação. Alimente, passe pano e tente não perder a eleição.">
+  <meta property="og:title" content="Politigotchi: adote seu político de estimação">
+  <meta property="og:description" content="Já que você passa tanto pano, agora toma conta dele.">
+  <meta property="og:image" content="https://pedrohjc.github.io/politigotchi/assets/icon-512.png">
+  <meta property="og:url" content="https://pedrohjc.github.io/politigotchi/">
+  <meta name="theme-color" content="#d91e26">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Politigotchi">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="titulo">Politigotchi</h1>
+  </header>
+
+  <main>
+    <!-- Escolha do político -->
+    <section id="tela-escolha" hidden>
+      <p class="sub">Escolha seu político de estimação</p>
+      <div class="escolha">
+        <button class="cartao" data-adotar="lula">
+          <img src="assets/ovo-lula.webp" alt="">
+          <span>Lulagotchi</span>
+        </button>
+        <button class="cartao" data-adotar="bolso">
+          <img src="assets/ovo-bolso.webp" alt="">
+          <span>Bolsogotchi</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Convite recebido de um amigo -->
+    <section id="tela-convite" hidden>
+      <img id="convite-img" class="convite-img" alt="">
+      <p id="convite-texto" class="convite-texto"></p>
+      <button id="convite-btn" class="primario"></button>
+    </section>
+
+    <!-- Jogo -->
+    <section id="tela-jogo" hidden>
+      <div class="ovo">
+        <img id="ovo-img" alt="">
+        <canvas id="lcd" aria-label="Tela do bichinho"></canvas>
+        <button class="btn" data-b="0" tabindex="-1" aria-label="Botão A"></button>
+        <button class="btn" data-b="1" tabindex="-1" aria-label="Botão B"></button>
+        <button class="btn" data-b="2" tabindex="-1" aria-label="Botão C"></button>
+      </div>
+
+      <p id="legenda" class="legenda" aria-live="polite"></p>
+      <p id="dica" class="dica">A escolhe · B confirma · C volta <span>(ou toque nos ícones da tela)</span></p>
+
+      <div id="fim" class="fim" hidden>
+        <strong id="fim-texto"></strong>
+        <div class="linha">
+          <button id="fim-whats" class="primario">Postar no WhatsApp</button>
+          <button id="fim-outros">Compartilhar</button>
+        </div>
+        <button id="de-novo">Adotar de novo</button>
+      </div>
+
+      <button id="btn-mandar" class="primario">📲 Mandar pra um amigo que passa pano</button>
+      <button id="trocar" class="link">Trocar de político</button>
+    </section>
+  </main>
+
+  <dialog id="dlg-mandar">
+    <form method="dialog">
+      <h2>Mandar pra um amigo</h2>
+      <label>Seu nome <input id="nome-meu" maxlength="20" autocomplete="given-name" placeholder="Ex.: Pedro"></label>
+      <label>Nome do amigo <input id="nome-amigo" maxlength="20" placeholder="Ex.: João"></label>
+      <fieldset>
+        <legend>Ele passa pano pro...</legend>
+        <label class="radio"><input type="radio" name="pet-amigo" value="lula" checked> Lula</label>
+        <label class="radio"><input type="radio" name="pet-amigo" value="bolso"> Bolsonaro</label>
+      </fieldset>
+      <button type="button" id="dlg-whats" class="primario">Mandar no WhatsApp</button>
+      <div class="linha">
+        <button type="button" id="dlg-copiar">Copiar link</button>
+        <button type="button" id="dlg-outros">Outros apps</button>
+      </div>
+      <button type="button" id="dlg-fechar" class="link">Fechar</button>
+    </form>
+  </dialog>
+
+  <script src="sprites.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
